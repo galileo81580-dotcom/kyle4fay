@@ -1,18 +1,15 @@
 // Firebase configuration for Kyle 4 Fay campaign
-// To set up: https://console.firebase.google.com
-// 1. Create project "kyle4fay"
-// 2. Add a Web App
-// 3. Copy the firebaseConfig object here
-// 4. Enable Firestore Database (start in production mode)
-// 5. Deploy security rules from firestore.rules
+// Project: kyle4fay-2026
+// Security rules: deploy from firestore.rules
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "kyle4fay.firebaseapp.com",
-  projectId: "kyle4fay",
-  storageBucket: "kyle4fay.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCIAtlkzlZcWWPgzkc01apbcU9ldXiluRE",
+  authDomain: "kyle4fay-2026.firebaseapp.com",
+  projectId: "kyle4fay-2026",
+  storageBucket: "kyle4fay-2026.firebasestorage.app",
+  messagingSenderId: "1079157801930",
+  appId: "1:1079157801930:web:121ac77e3450e1ac064533",
+  measurementId: "G-PKNTJ9J0R1"
 };
 
 export { firebaseConfig };
