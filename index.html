@@ -870,27 +870,24 @@
         </div>
         <div class="form-card">
           <h3>Sign Up to Volunteer</h3>
-          <form action="https://formsubmit.co/volunteer@kyle4fay.org" method="POST">
-            <input type="hidden" name="_subject" value="New Campaign Volunteer Signup">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://kyle4fay.org/#involved">
-            <input type="text" name="_honey" style="display:none">
+          <form id="volunteerForm">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
             <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required placeholder="Your full name">
+              <label for="vol-name">Name</label>
+              <input type="text" id="vol-name" name="name" required placeholder="Your full name">
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required placeholder="you@example.com">
+              <label for="vol-email">Email</label>
+              <input type="email" id="vol-email" name="email" required placeholder="you@example.com">
             </div>
             <div class="form-group">
-              <label for="phone">Phone <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label>
-              <input type="tel" id="phone" name="phone" placeholder="(479) 555-1234">
+              <label for="vol-phone">Phone <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label>
+              <input type="tel" id="vol-phone" name="phone" placeholder="(479) 555-1234">
             </div>
             <div class="form-group">
-              <label for="help">How can you help?</label>
-              <select id="help" name="how_can_you_help" required>
+              <label for="vol-help">How can you help?</label>
+              <select id="vol-help" name="how_can_you_help" required>
                 <option value="" disabled selected>Select an option</option>
                 <option value="Knock Doors">Knock Doors</option>
                 <option value="Make Phone Calls">Make Phone Calls</option>
@@ -900,7 +897,8 @@
                 <option value="Other">Other / Anything You Need</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-gold form-submit">Count Me In</button>
+            <button type="submit" class="btn btn-gold form-submit" id="volunteerSubmit">Count Me In</button>
+            <p class="form-status" id="volunteerStatus" style="margin-top:0.75rem;font-size:0.9rem;text-align:center;display:none;"></p>
           </form>
         </div>
       </div>
@@ -939,16 +937,67 @@
 
   <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 
-  <script>
+  <script type="module">
+    import { addContact } from './js/contacts.js';
+
+    // Scroll-to-top button
     const scrollBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
       scrollBtn.classList.toggle('visible', window.scrollY > 400);
     });
 
+    // Close mobile nav on link click
     document.querySelectorAll('.nav a').forEach(link => {
       link.addEventListener('click', () => {
         document.querySelector('.nav').classList.remove('open');
       });
+    });
+
+    // Volunteer form submission
+    const form = document.getElementById('volunteerForm');
+    const status = document.getElementById('volunteerStatus');
+    const submitBtn = document.getElementById('volunteerSubmit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot check
+      if (form.querySelector('[name="_honey"]').value) return;
+
+      const name = form.querySelector('[name="name"]').value.trim();
+      const email = form.querySelector('[name="email"]').value.trim();
+      const phone = form.querySelector('[name="phone"]').value.trim();
+      const role = form.querySelector('[name="how_can_you_help"]').value;
+
+      if (!name || !email || !role) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      status.style.display = 'none';
+
+      try {
+        await addContact({
+          name,
+          email,
+          phone,
+          source: 'volunteer_form',
+          volunteerRole: role,
+          tags: ['volunteer']
+        });
+
+        status.textContent = 'Thank you! We\'ll be in touch soon.';
+        status.style.color = '#15477a';
+        status.style.display = 'block';
+        form.reset();
+      } catch (err) {
+        console.error('Form submission error:', err);
+        status.textContent = 'Something went wrong. Please email volunteer@kyle4fay.org instead.';
+        status.style.color = '#c0392b';
+        status.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Count Me In';
+      }
     });
   </script>
 

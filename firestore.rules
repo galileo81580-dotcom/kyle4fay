@@ -1,0 +1,36 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Contacts collection: public can create and update their own record,
+    // but cannot read other contacts or list the collection.
+    // Admin access is via Firebase Console or authenticated admin SDK.
+    match /contacts/{contactId} {
+      // Allow creating a new contact from the public website
+      allow create: if
+        request.resource.data.keys().hasAll(['name', 'email', 'sources', 'status', 'created_at']) &&
+        request.resource.data.email is string &&
+        request.resource.data.email.size() > 0 &&
+        request.resource.data.status == 'new' &&
+        request.resource.data.sources.size() <= 5;
+
+      // Allow updating an existing contact (for merging duplicate submissions)
+      // Only allow updating specific fields, not overwriting the whole doc
+      allow update: if
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['name', 'phone', 'sources', 'volunteer_roles', 'tags', 'activity', 'updated_at']) &&
+        request.resource.data.sources.size() <= 10 &&
+        request.resource.data.activity.size() <= 50;
+
+      // Public reads are denied - contacts are only visible in Firebase Console
+      // or via an authenticated admin app
+      allow read: if false;
+    }
+
+    // Default deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
