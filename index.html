@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kyle Smith for Fayetteville City Council | Ward 4, Position 1</title>
+  <meta name="description" content="Kyle Smith is running for Fayetteville City Council, Ward 4 Position 1. A proven leader with a plan to build the city we've already planned for. November 2026.">
+  <meta property="og:title" content="Kyle Smith for Fayetteville City Council">
+  <meta property="og:description" content="A city that works for everyone. Kyle Smith for Ward 4, Position 1. November 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kyle4fay.org">
+  <meta property="og:locale" content="en_US">
+  <!-- TODO: Add og:image once social sharing image is created -->
+  <!-- <meta property="og:image" content="https://kyle4fay.org/images/og-image.jpg"> -->
+  <!-- <meta property="og:image:width" content="1200"> -->
+  <!-- <meta property="og:image:height" content="630"> -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kyle Smith for Fayetteville City Council">
+  <meta name="twitter:description" content="A city that works for everyone. Ward 4, Position 1. November 2026.">
+  <link rel="canonical" href="https://kyle4fay.org">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #15477a;
+      --blue: #2197d4;
+      --gold: #ffc20e;
+      --white: #ffffff;
+      --light-gray: #f5f7fa;
+      --text-dark: #1a1a2e;
+      --text-muted: #555;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--navy);
+      transition: color 0.2s;
+    }
+
+    .nav a:hover {
+      color: var(--blue);
+    }
+
+    .nav .btn-donate-nav {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .nav .btn-donate-nav:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 194, 14, 0.4);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3459 100%);
+      color: var(--white);
+      padding: 10rem 1.5rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(33, 151, 212, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 194, 14, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 16px;
+      border: 4px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      object-fit: cover;
+      aspect-ratio: 3 / 4;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-blue {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .btn-blue:hover {
+      box-shadow: 0 6px 20px rgba(33, 151, 212, 0.4);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-gold:hover {
+      box-shadow: 0 6px 20px rgba(255, 194, 14, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subheading {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%;
+      border-radius: 12px;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      background: var(--light-gray);
+      border: 3px solid var(--light-gray);
+    }
+
+    .about-text p {
+      margin-bottom: 1.25rem;
+      color: var(--text-dark);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .experience-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--light-gray);
+      border: 1px solid rgba(21, 71, 122, 0.1);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .experience-badge span {
+      font-size: 1.1rem;
+    }
+
+    /* ===== PLATFORM ===== */
+    .platform {
+      background: var(--light-gray);
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .plank-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(21, 71, 122, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .plank-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(21, 71, 122, 0.1);
+    }
+
+    .plank-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .plank-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .plank-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ===== WHY NOW ===== */
+    .why-now {
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .why-now-content {
+      max-width: 750px;
+    }
+
+    .why-now-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .pullquote {
+      border-left: 4px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* ===== GET INVOLVED ===== */
+    .involved {
+      background: var(--light-gray);
+    }
+
+    .involved-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .involved-text p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .ways-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .ways-list li {
+      padding: 0.6rem 0;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .ways-list li::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .form-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(21, 71, 122, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e0e4ea;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+      background: var(--white);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 0.85rem;
+      font-size: 1rem;
+    }
+
+    /* ===== DONATE ===== */
+    .donate {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .donate .section-heading {
+      color: var(--white);
+    }
+
+    .donate-text {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      opacity: 0.9;
+      line-height: 1.7;
+    }
+
+    .btn-donate-large {
+      padding: 1.1rem 3rem;
+      font-size: 1.15rem;
+      letter-spacing: 0.03em;
+    }
+
+    .donate-disclaimer {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #0d2d4f;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-paid {
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .footer-social a:hover {
+      background: var(--blue);
+    }
+
+    .footer-social svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      opacity: 0.5;
+    }
+
+    /* ===== SCROLL TO TOP ===== */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s, transform 0.15s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-photo {
+        order: -1;
+      }
+
+      .hero-photo img {
+        max-width: 280px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-photo {
+        max-width: 280px;
+      }
+
+      .involved-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .header-inner {
+        height: 60px;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      .nav {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        transform: translateY(-120%);
+        transition: transform 0.3s ease;
+      }
+
+      .nav.open {
+        transform: translateY(0);
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      .section {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .platform-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        font-size: 1.65rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="top">
+    <div class="header-inner">
+      <a href="#top" class="logo">
+        <img src="images/logo-white.png" alt="Kyle Smith 4 Fayetteville" width="200" height="125">
+      </a>
+      <button class="mobile-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#platform">Platform</a>
+        <a href="#involved">Get Involved</a>
+        <!-- TODO: Replace with GoodChange campaign URL -->
+        <a href="#donate" class="btn-donate-nav">Donate</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>A City That Works for Everyone</h1>
+        <p class="subtitle">Fayetteville is growing fast, but our infrastructure, codes, and policies haven't kept up. We're paying for decades of deferred decisions. It's time for leadership that finishes what we've started.</p>
+        <div class="hero-buttons">
+          <a href="#platform" class="btn btn-gold">See My Plan</a>
+          <!-- TODO: Replace with GoodChange campaign URL -->
+          <a href="#donate" class="btn btn-outline">Contribute</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <!-- ASSET NEEDED: 2026 campaign headshot. Using interim photo. -->
+        <img src="images/headshot.jpg" alt="Kyle Smith, candidate for Fayetteville City Council Ward 4" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section about" id="about">
+    <div class="section-inner">
+      <h2 class="section-heading">About Kyle</h2>
+      <div class="about-grid">
+        <div>
+          <img class="about-photo" src="images/kyle-council.png" alt="Kyle Smith during his time on the Fayetteville City Council">
+          <div class="experience-badge">
+            <span>&#x1F3DB;</span> Former City Council Member, 2017&ndash;2020
+          </div>
+        </div>
+        <div class="about-text">
+          <p>I'm a Ward 4 resident, a former public school teacher, and a former Fayetteville City Council member. Before I ever ran for office, I helped lead the grassroots campaign to pass Fayetteville's civil rights ordinance &mdash; a resident-led initiative that the voters approved in 2015. That experience taught me what civic engagement looks like when it works.</p>
+          <p>I represented Ward 4 on the City Council from 2017 to 2020. I focused on street safety, responsible infrastructure investments, and expanding opportunities for residents to participate in city government. I worked with neighborhoods on the 2019 comprehensive plan update and the 71B Corridor plan, and I pushed for the zoning code modernization that should have followed.</p>
+          <p>Since leaving office, I went to work for a neighborhood developer and homebuilder because I wanted hands-on experience addressing our region's housing challenges. I'm active with Fayetteville Strong, a group that promotes fiscal responsibility, safe transportation, affordable housing, and government transparency.</p>
+          <p>I'm running because I hear from neighbors every day who feel that Fayetteville isn't meeting their needs. Now more than ever, it's critical that we build the city we've already planned for &mdash; one that doesn't leave anyone behind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLATFORM ===== -->
+  <section class="section platform" id="platform">
+    <div class="section-inner">
+      <h2 class="section-heading">My Platform</h2>
+      <p class="section-subheading">Guided by principles from the Strong Towns movement &mdash; a nonpartisan framework for building fiscally resilient, people-centered communities.</p>
+      <div class="platform-grid">
+
+        <div class="plank-card">
+          <span class="plank-icon">&#x1F3DB;</span>
+          <h3>Fiscal Responsibility &amp; Infrastructure</h3>
+          <p>Every dollar of new infrastructure creates a 50-year maintenance obligation. We need lifecycle cost analysis on every major project and a public bond dashboard so voters can track how their $375 million is being spent.</p>
+        </div>
+
+        <div class="plank-card">
+          <span class="plank-icon">&#x1F3D7;</span>
+          <h3>Smart Growth &amp; Zoning Modernization</h3>
+          <p>We will never meet the challenges of 2030 with the policies of 1970. Our 2019 comprehensive plan was supposed to guide a development code overhaul &mdash; that second step never happened. It's time.</p>
+        </div>
+
+        <div class="plank-card">
+          <span class="plank-icon">&#x1F3E0;</span>
+          <h3>Housing Choice &amp; Affordability</h3>
+          <p>70% of Fayetteville households are one or two people, but most of our housing is three-bedroom single-family homes. We're not changing what you have &mdash; we're expanding what you can build.</p>
+        </div>
+
+        <div class="plank-card">
+          <span class="plank-icon">&#x1F6B6;</span>
+          <h3>Transportation &amp; Connectivity</h3>
+          <p>Wedington Drive has no safe pedestrian crossings. Subdivision streets carry cut-through traffic. We need street design that builds a resilient network safe for everyone &mdash; not just cars.</p>
+        </div>
+
+        <div class="plank-card">
+          <span class="plank-icon">&#x1F331;</span>
+          <h3>Local Economic Development</h3>
+          <p>Economic gardening, not big-game hunting. A diversified local economy with dozens of thriving small businesses is more resilient than betting on a single large outside employer.</p>
+        </div>
+
+        <div class="plank-card">
+          <span class="plank-icon">&#x1F91D;</span>
+          <h3>Trust &amp; Civic Engagement</h3>
+          <p>Our biggest decisions involve the school district, the university, and neighboring cities &mdash; but these institutions too often operate in silos. We need transparency, early coordination, and genuine public input.</p>
+        </div>
+
+        <div class="plank-card">
+          <span class="plank-icon">&#x1F33F;</span>
+          <h3>Sustainability &amp; Green Space</h3>
+          <p>Sustainability and fiscal responsibility are the same argument. Compact development preserves more green space than sprawl and costs less to serve.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY NOW ===== -->
+  <section class="section why-now">
+    <div class="section-inner">
+      <h2 class="section-heading">Why This Race Matters</h2>
+      <div class="why-now-content">
+        <p>Fayetteville voters passed a $375 million infrastructure bond. We approved a comprehensive plan in 2019 to guide how our city grows. But the zoning code modernization that was supposed to follow? It never happened.</p>
+        <div class="pullquote">
+          We don't need more plans. We need leaders who will implement the plans we already have.
+        </div>
+        <p>Meanwhile, development proposals keep coming to the Planning Commission under outdated rules, and neighbors are caught in the middle &mdash; frustrated by projects that don't fit, frustrated by a process that doesn't listen, and frustrated by leaders who treat every issue like it's someone else's problem.</p>
+        <p>Ward 4 deserves a council member who has done this work before and knows how to get it done.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GET INVOLVED ===== -->
+  <section class="section involved" id="involved">
+    <div class="section-inner">
+      <h2 class="section-heading">Get Involved</h2>
+      <div class="involved-grid">
+        <div class="involved-text">
+          <p>This campaign runs on neighbors talking to neighbors. Every conversation at a doorstep, every yard sign on a corner, every share on social media moves us closer to the city council representation Ward 4 deserves.</p>
+          <ul class="ways-list">
+            <li>Knock doors with us on weekends</li>
+            <li>Make phone calls to Ward 4 voters</li>
+            <li>Host a yard sign in your front yard</li>
+            <li>Share the campaign with friends and neighbors</li>
+            <li>Host a house party or neighborhood meet-and-greet</li>
+          </ul>
+        </div>
+        <div class="form-card">
+          <h3>Sign Up to Volunteer</h3>
+          <form action="https://formsubmit.co/volunteer@kyle4fay.org" method="POST">
+            <input type="hidden" name="_subject" value="New Campaign Volunteer Signup">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://kyle4fay.org/#involved">
+            <input type="text" name="_honey" style="display:none">
+
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your full name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="(479) 555-1234">
+            </div>
+            <div class="form-group">
+              <label for="help">How can you help?</label>
+              <select id="help" name="how_can_you_help" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Knock Doors">Knock Doors</option>
+                <option value="Make Phone Calls">Make Phone Calls</option>
+                <option value="Host a Yard Sign">Host a Yard Sign</option>
+                <option value="Host a House Party">Host a House Party</option>
+                <option value="Spread the Word">Spread the Word</option>
+                <option value="Other">Other / Anything You Need</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-gold form-submit">Count Me In</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DONATE ===== -->
+  <section class="section donate" id="donate">
+    <div class="section-inner">
+      <h2 class="section-heading">Support the Campaign</h2>
+      <p class="donate-text">Municipal races are won at the doors. Your contribution goes directly to voter contact &mdash; door-to-door canvassing, mailers, and digital outreach to reach every voter in Ward 4.</p>
+      <!-- TODO: Replace with GoodChange campaign URL when bank account is set up -->
+      <a href="#donate" class="btn btn-gold btn-donate-large">Donate Now</a>
+      <p class="donate-disclaimer">Paid for by Vote for Kyle Smith</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-title">Kyle Smith for Fayetteville City Council &middot; Ward 4, Position 1</p>
+      <p class="footer-paid">Paid for by Vote for Kyle Smith</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/kyle4fay" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <!-- TODO: Add Instagram when new account is created -->
+      </div>
+      <div class="footer-links">
+        <a href="mailto:info@kyle4fay.org">info@kyle4fay.org</a>
+        <a href="https://www.facebook.com/kyle4fay">Facebook</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Vote for Kyle Smith. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+  <script>
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

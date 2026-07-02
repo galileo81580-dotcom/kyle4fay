@@ -1,0 +1,14 @@
+# Source design files - too large for git, kept locally
+Design/
+.docx_temp/
+
+# Root-level source photos (web versions are in images/)
+/*.JPG
+/Kyle4Fay_*.jpg
+/kyle-council*
+/Fam-*.jpg
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
