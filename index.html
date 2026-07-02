@@ -301,7 +301,7 @@
     .about-photo {
       width: 100%;
       border-radius: 12px;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
       background: var(--light-gray);
       border: 3px solid var(--light-gray);
@@ -349,11 +349,18 @@
       padding: 2rem;
       border: 1px solid rgba(21, 71, 122, 0.08);
       transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
     }
 
     .plank-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(21, 71, 122, 0.1);
+    }
+
+    .plank-card.expanded {
+      transform: none;
+      box-shadow: 0 8px 30px rgba(21, 71, 122, 0.1);
+      border-color: var(--blue);
     }
 
     .plank-icon {
@@ -373,6 +380,64 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       line-height: 1.7;
+    }
+
+    .plank-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--blue);
+      margin-top: 0.75rem;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .plank-toggle .arrow {
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .expanded .plank-toggle .arrow {
+      transform: rotate(180deg);
+    }
+
+    .plank-details {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    .expanded .plank-details {
+      display: block;
+    }
+
+    .plank-details ul {
+      list-style: none;
+      padding: 0.75rem 0 0;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .plank-details li {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 1.25rem;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      line-height: 1.65;
+    }
+
+    .plank-details li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
     }
 
     /* ===== WHY NOW ===== */
@@ -400,6 +465,107 @@
       font-weight: 600;
       color: var(--navy);
       line-height: 1.6;
+    }
+
+    /* ===== IN THE NEWS ===== */
+    .news {
+      background: var(--white);
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .news-card {
+      background: var(--light-gray);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(21, 71, 122, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(21, 71, 122, 0.1);
+    }
+
+    .news-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .news-label-podcast {
+      background: rgba(33, 151, 212, 0.12);
+      color: var(--blue);
+    }
+
+    .news-label-press {
+      background: rgba(255, 194, 14, 0.2);
+      color: #b38600;
+    }
+
+    .news-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .news-card .news-source {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .news-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .news-card blockquote {
+      border-left: 3px solid var(--gold);
+      padding-left: 1rem;
+      margin: 0 0 1rem;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    .news-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .news-link:hover {
+      gap: 0.6rem;
+    }
+
+    @media (max-width: 700px) {
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ===== GET INVOLVED ===== */
@@ -738,6 +904,7 @@
       <nav class="nav">
         <a href="#about">About</a>
         <a href="#platform">Platform</a>
+        <a href="#news">News</a>
         <a href="#involved">Get Involved</a>
         <!-- TODO: Replace with GoodChange campaign URL -->
         <a href="#donate" class="btn-donate-nav">Donate</a>
@@ -750,7 +917,7 @@
     <div class="hero-content">
       <div class="hero-text">
         <h1>A City That Works for Everyone</h1>
-        <p class="subtitle">Fayetteville is growing fast, but our infrastructure, codes, and policies haven't kept up. We're paying for decades of deferred decisions. It's time for leadership that finishes what we've started.</p>
+        <p class="subtitle">Fayetteville has incredible potential &mdash; and the plans to match it. Now we need leadership that follows through: progressive in our values, conservative with our finances.</p>
         <div class="hero-buttons">
           <a href="#platform" class="btn btn-gold">See My Plan</a>
           <!-- TODO: Replace with GoodChange campaign URL -->
@@ -770,16 +937,16 @@
       <h2 class="section-heading">About Kyle</h2>
       <div class="about-grid">
         <div>
-          <img class="about-photo" src="images/kyle-council.png" alt="Kyle Smith during his time on the Fayetteville City Council">
+          <img class="about-photo" src="images/kyle-voting.jpg" alt="Kyle Smith early voting at the Fayetteville Public Library">
           <div class="experience-badge">
             <span>&#x1F3DB;</span> Former City Council Member, 2017&ndash;2020
           </div>
         </div>
         <div class="about-text">
-          <p>I'm a Ward 4 resident who taught high school geometry for 18 years before entering public service. Before I ever ran for office, I helped lead the grassroots campaign to pass Fayetteville's civil rights ordinance &mdash; a resident-led initiative that the voters approved in 2015. That experience taught me what civic engagement looks like when it works.</p>
-          <p>I represented Ward 4 on the City Council from 2017 to 2020. I focused on street safety, responsible infrastructure investments, and expanding opportunities for residents to participate in city government. I worked with neighborhoods on the 2019 comprehensive plan update and the 71B Corridor plan, and I pushed for the zoning code modernization that should have followed.</p>
-          <p>Since leaving office, I went to work for a neighborhood developer and homebuilder because I wanted hands-on experience with the housing challenges our neighbors face every day. I'm active with Fayetteville Strong, the local Strong Towns conversation group that promotes fiscal responsibility, safe transportation, affordable housing, and government transparency.</p>
-          <p>I'm running because Fayetteville is growing fast, but our codes, our infrastructure, and our policies haven't kept up. We need a council member who will move the city forward with purpose &mdash; not someone who waits for the next crisis.</p>
+          <p>I'm a Ward 4 resident who taught high school geometry for 18 years before entering local government. Before I ever ran for office, I helped lead the grassroots campaign to pass Fayetteville's civil rights ordinance &mdash; a resident-led initiative that the voters approved in 2015. That experience taught me what civic engagement looks like when it works.</p>
+          <p>From 2017 to 2020, I represented Ward 4 on the City Council. I focused on street safety, responsible infrastructure investments, and expanding opportunities for residents to participate in city government. I worked with neighborhoods on the 2019 comprehensive plan update and the 71B Corridor plan, and I pushed for the zoning code modernization that should have followed.</p>
+          <p>Since leaving office, I went to work for a neighborhood developer and homebuilder because I wanted hands-on experience working on the housing challenges our neighbors face every day. I'm active with Fayetteville Strong, the local Strong Towns conversation group that promotes fiscal responsibility, safe transportation, affordable housing, and government transparency.</p>
+          <p>Ward 4 deserves a council member with the experience to be effective from day one and the vision to move us forward.</p>
         </div>
       </div>
     </div>
@@ -795,43 +962,105 @@
         <div class="plank-card">
           <span class="plank-icon">&#x1F3DB;</span>
           <h3>Fiscal Responsibility &amp; Infrastructure</h3>
-          <p>Decades of sprawl have left Fayetteville with $120 million in deferred maintenance, and every dollar of new infrastructure creates a 50-year obligation. We need lifecycle cost analysis on every major project and a public bond dashboard so voters can track how their $375 million is being spent.</p>
+          <p>Voters entrusted us with $375 million in bonds, and every dollar of new infrastructure creates a 50-year maintenance obligation. We owe taxpayers lifecycle cost analysis on major projects and a public dashboard so they can track how their investment is being spent.</p>
+          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
+          <div class="plank-details">
+            <ul>
+              <li>Require lifecycle cost analysis on major projects &mdash; not just what it costs to build, but what it costs to maintain for 50 years.</li>
+              <li>Push for a public bond implementation dashboard so voters can track how their $375 million is being spent.</li>
+              <li>Hold the line against project cost overruns and ensure the city spends taxpayer money responsibly.</li>
+              <li>Support impact fees based on actual impact to the system. A new home on an existing line shouldn't pay the same as one that needs miles of new pipe.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="plank-card">
           <span class="plank-icon">&#x1F3D7;</span>
           <h3>Smart Growth &amp; Zoning Modernization</h3>
-          <p>We will never meet the challenges of 2030 with the policies of 1970. Our 2019 comprehensive plan was supposed to guide a development code overhaul &mdash; that second step never happened. It's time.</p>
+          <p>We will never meet the opportunities of 2030 with the policies of 1970. Our 2019 comprehensive plan laid the groundwork &mdash; now it's time to modernize our development code to match the city we're becoming.</p>
+          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
+          <div class="plank-details">
+            <ul>
+              <li>Get the zoning code updated to match the 2019 plan and how Fayetteville actually lives today.</li>
+              <li>Push to update the Wedington Corridor Master Plan and update the zoning so that it's actually legal to build what the community plan says we want.</li>
+              <li>Take the development pressure off established neighborhoods by supporting strategic density at designated growth nodes &mdash; Wedington/Rupple, Wedington/I-49, Mt. Comfort/Rupple.</li>
+              <li>Use the city's data to steer infrastructure investments where growth makes sense, instead of leaving it to developers to dictate.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="plank-card">
           <span class="plank-icon">&#x1F3E0;</span>
           <h3>Housing Choice &amp; Affordability</h3>
           <p>70% of Fayetteville households are one or two people, but most of our housing is three-bedroom single-family homes. ADUs, duplexes, and townhomes are evolutionary change that builds individual wealth &mdash; not revolutionary change that transforms neighborhoods overnight.</p>
+          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
+          <div class="plank-details">
+            <ul>
+              <li>Support ADU policies that let homeowners build wealth on their own property, and partner with local banks to backstop financing programs.</li>
+              <li>Advocate for missing-middle housing types &mdash; duplexes, townhomes, cottage courts &mdash; as compatible options in residential areas.</li>
+              <li>Push for the city's Housing Action Plan to include measurable targets and annual progress reporting.</li>
+              <li>Back programs that help Fayetteville residents compete for housing against out-of-town buyers.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="plank-card">
           <span class="plank-icon">&#x1F6B6;</span>
           <h3>Transportation &amp; Connectivity</h3>
-          <p>Wedington Drive has no safe pedestrian crossings. Subdivision streets carry cut-through traffic. We need street design that builds a resilient network safe for everyone &mdash; not just cars.</p>
+          <p>Our trail system is the gold star on Fayetteville's report card &mdash; now let's extend that standard to our streets. Wedington needs safe crossings. Subdivisions need traffic calming. Everyone deserves a network that works, not just drivers.</p>
+          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
+          <div class="plank-details">
+            <ul>
+              <li>Get a real transportation study done for the Wedington corridor &mdash; congestion, safety, and connectivity all need answers.</li>
+              <li>Set street design standards that make our roads safer for everyone, not just cars.</li>
+              <li>Push for traffic calming in residential areas experiencing cut-through traffic.</li>
+              <li>Ensure the $56 million in road bond funds addresses Ward 4's most pressing safety and congestion problems.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="plank-card">
           <span class="plank-icon">&#x1F331;</span>
           <h3>Local Economic Development</h3>
           <p>Economic gardening, not big-game hunting. A diversified local economy with dozens of thriving small businesses is more resilient than betting on a single large outside employer.</p>
+          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
+          <div class="plank-details">
+            <ul>
+              <li>Fight for small business support: streamlined permitting, micro-lending partnerships, and fewer barriers to entry for local entrepreneurs.</li>
+              <li>Champion transparency in all economic development agreements, including clear measurable goals and clawback provisions.</li>
+              <li>Encourage mixed-use districts with local businesses that shorten the distance to your destinations &mdash; not just car washes and chain chicken.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="plank-card">
           <span class="plank-icon">&#x1F91D;</span>
           <h3>Trust &amp; Civic Engagement</h3>
           <p>Our biggest decisions involve the school district, the university, and neighboring cities &mdash; but these institutions too often operate in silos. We need transparency, early coordination, and genuine public input.</p>
+          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
+          <div class="plank-details">
+            <ul>
+              <li>Build early and ongoing coordination between the city, school board, and university on major planning decisions.</li>
+              <li>Support reasonable limits on NDAs in economic development negotiations.</li>
+              <li>Improve plain-language communication so city processes and public meetings are more accessible to everyday folks.</li>
+              <li>Model respectful civic discourse &mdash; listen to constituents who disagree, engage with their concerns, and explain my reasoning.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="plank-card">
           <span class="plank-icon">&#x1F33F;</span>
           <h3>Sustainability &amp; Green Space</h3>
           <p>Sustainability and fiscal responsibility are the same argument. Compact development preserves more green space than sprawl and costs less to serve.</p>
+          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
+          <div class="plank-details">
+            <ul>
+              <li>Continue pushing toward the 100% clean energy by 2030 goal and the cost savings it generates for taxpayers.</li>
+              <li>Create a green space preservation strategy that identifies priority parcels before they're developed.</li>
+              <li>Expand our conservation district into a real preservation tool that protects ecological services.</li>
+              <li>Support development standards that require responsible stormwater management for new construction.</li>
+            </ul>
+          </div>
         </div>
 
       </div>
@@ -843,12 +1072,41 @@
     <div class="section-inner">
       <h2 class="section-heading">Why This Race Matters</h2>
       <div class="why-now-content">
-        <p>Fayetteville voters passed a $375 million infrastructure bond. We approved a comprehensive plan in 2019 to guide how our city grows. But the zoning code modernization that was supposed to follow? It never happened. Meanwhile, decades of sprawl have created $120 million in deferred infrastructure maintenance &mdash; roads, pipes, and systems the city built but can't afford to keep up.</p>
+        <p>Fayetteville has done the hard work of planning. Voters approved a $375 million infrastructure bond. We adopted a comprehensive plan in 2019 to guide how our city grows. The next step &mdash; modernizing our development codes to match that vision &mdash; is still waiting. Meanwhile, we have $120 million in deferred water and sewer maintenance that has to be addressed. The foundation is laid; now we need to build on it.</p>
         <div class="pullquote">
-          We don't need more plans. We need leaders who will implement the plans we already have.
+          A city isn't a picture you paint and leave on the wall. It's a conversation we have together &mdash; and it's time to move that conversation forward.
         </div>
-        <p>Development proposals keep coming to the Planning Commission under outdated rules, and neighbors are caught in the middle. It's not enough to vote "no" on individual projects while doing nothing to fix the underlying policies. If our drainage standards are inadequate, fix the drainage standards. If our tree preservation rules are outdated, update them. Seven years of saying "this isn't good enough" without proposing something better isn't leadership &mdash; it's obstruction.</p>
-        <p>Ward 4 deserves a council member who has done this work before and will move the city forward with purpose.</p>
+        <p>Right now, development proposals come to the Planning Commission under outdated rules, and neighbors are caught in the middle. We can fix that &mdash; not by saying "no" louder, but by updating the standards so the rules match what our community actually wants. Better drainage standards. Stronger tree preservation. Zoning that reflects our plans instead of fighting them.</p>
+        <p>Ward 4 is ready for a council member who has done this work before and is eager to do it again.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IN THE NEWS ===== -->
+  <section class="section news" id="news">
+    <div class="section-inner">
+      <h2 class="section-heading">In the News</h2>
+      <p class="section-subheading">Kyle on the issues &mdash; in his own words.</p>
+      <div class="news-grid">
+
+        <div class="news-card">
+          <span class="news-label news-label-podcast">Podcast</span>
+          <h3>&ldquo;A City Is a Conversation&rdquo;</h3>
+          <p class="news-source">FayetteForward &middot; Episode 042</p>
+          <p>Kyle joins Nick and Meredith Castin to talk housing, zoning reform, Strong Towns, incremental development, and why Fayetteville&rsquo;s best days are still ahead.</p>
+          <blockquote>&ldquo;If we&rsquo;re not keeping the local vibe fresh, the corporations know what they&rsquo;re doing. They&rsquo;ve got experience bringing in the same thing they&rsquo;ve done everywhere else &mdash; and that&rsquo;s not what we want to become.&rdquo;</blockquote>
+          <a href="https://episodes.fayetteforward.show/episode/042-a-city-is-a-conversation-with-kyle-smith" class="news-link" target="_blank" rel="noopener">Listen to the episode &rarr;</a>
+        </div>
+
+        <div class="news-card">
+          <span class="news-label news-label-press">Press Release</span>
+          <h3>Kyle Smith Announces Campaign for Fayetteville City Council</h3>
+          <p class="news-source">Campaign Announcement</p>
+          <p>Former Ward 4 council member and 18-year educator runs on fiscal accountability, economic development, and housing choice. &ldquo;Progressive in our values, conservative with our finances.&rdquo;</p>
+          <blockquote>&ldquo;The best way to prevent the massive, disruptive developments people fear is to enable small, incremental changes everywhere.&rdquo;</blockquote>
+          <a href="media/press-release.txt" class="news-link" target="_blank">Read the full release &rarr;</a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -944,6 +1202,11 @@
     const scrollBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
       scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+
+    // Platform card expand/collapse
+    document.querySelectorAll('.plank-card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('expanded'));
     });
 
     // Close mobile nav on link click

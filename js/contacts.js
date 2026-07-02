@@ -20,18 +20,26 @@ function normalizePhone(phone) {
   return phone.replace(/\D/g, '').slice(-10);
 }
 
-// Add or update a contact in the unified contacts collection.
-// If a contact with the same email exists, merge new data into it.
-// This is the single entry point for all form submissions.
+// Deterministic doc ID from email so repeat submissions merge without reads
+function emailToDocId(email) {
+  let hash = 0;
+  for (let i = 0; i < email.length; i++) {
+    hash = ((hash << 5) - hash) + email.charCodeAt(i);
+    hash |= 0;
+  }
+  return 'c_' + Math.abs(hash).toString(36) + '_' + email.replace(/[^a-z0-9]/g, '_');
+}
+
+// Add or merge a contact. Uses setDoc with merge so no read is needed.
+// Same email always maps to the same document ID.
 export async function addContact({ name, email, phone, source, volunteerRole, message, tags = [] }) {
   await initFirebase();
-  const { collection, query, where, getDocs, addDoc, updateDoc, arrayUnion, serverTimestamp } =
+  const { doc, setDoc, arrayUnion, serverTimestamp } =
     await import('https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js');
 
   const normalizedEmail = normalizeEmail(email);
-  const contactsRef = collection(db, 'contacts');
-  const q = query(contactsRef, where('email', '==', normalizedEmail));
-  const existing = await getDocs(q);
+  const docId = emailToDocId(normalizedEmail);
+  const contactRef = doc(db, 'contacts', docId);
 
   const activityEntry = {
     source,
@@ -40,34 +48,20 @@ export async function addContact({ name, email, phone, source, volunteerRole, me
     ...(message && { message })
   };
 
-  if (!existing.empty) {
-    const docRef = existing.docs[0].ref;
-    const updates = {
-      updated_at: serverTimestamp(),
-      sources: arrayUnion(source),
-      activity: arrayUnion(activityEntry)
-    };
-    if (name) updates.name = name;
-    if (phone) updates.phone = normalizePhone(phone);
-    if (volunteerRole) updates.volunteer_roles = arrayUnion(volunteerRole);
-    if (tags.length) updates.tags = arrayUnion(...tags);
-    await updateDoc(docRef, updates);
-    return { id: docRef.id, merged: true };
-  }
-
-  const newContact = {
+  const data = {
     name: name || '',
     email: normalizedEmail,
-    phone: phone ? normalizePhone(phone) : '',
-    sources: [source],
-    volunteer_roles: volunteerRole ? [volunteerRole] : [],
-    tags,
+    sources: arrayUnion(source),
     status: 'new',
     created_at: serverTimestamp(),
     updated_at: serverTimestamp(),
-    activity: [activityEntry]
+    activity: arrayUnion(activityEntry)
   };
 
-  const docRef = await addDoc(contactsRef, newContact);
-  return { id: docRef.id, merged: false };
+  if (phone) data.phone = normalizePhone(phone);
+  if (volunteerRole) data.volunteer_roles = arrayUnion(volunteerRole);
+  if (tags.length) data.tags = arrayUnion(...tags);
+
+  await setDoc(contactRef, data, { merge: true });
+  return { id: docId };
 }
