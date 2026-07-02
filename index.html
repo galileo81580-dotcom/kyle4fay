@@ -347,8 +347,8 @@
       background: var(--white);
       border-radius: 12px;
       padding: 2rem;
-      border: 1px solid rgba(21, 71, 122, 0.08);
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: 2px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
       cursor: pointer;
     }
 
@@ -357,9 +357,9 @@
       box-shadow: 0 8px 30px rgba(21, 71, 122, 0.1);
     }
 
-    .plank-card.expanded {
+    .plank-card.active {
       transform: none;
-      box-shadow: 0 8px 30px rgba(21, 71, 122, 0.1);
+      box-shadow: 0 8px 30px rgba(21, 71, 122, 0.12);
       border-color: var(--blue);
     }
 
@@ -382,60 +382,55 @@
       line-height: 1.7;
     }
 
-    .plank-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
+    .plank-card .plank-cta {
+      display: inline-block;
       font-size: 0.85rem;
       font-weight: 600;
       color: var(--blue);
       margin-top: 0.75rem;
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      font-family: inherit;
     }
 
-    .plank-toggle .arrow {
-      display: inline-block;
-      transition: transform 0.2s;
-    }
-
-    .expanded .plank-toggle .arrow {
-      transform: rotate(180deg);
-    }
-
-    .plank-details {
+    .platform-detail {
       display: none;
-      margin-top: 1rem;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      margin-top: 1.5rem;
+      border: 2px solid var(--blue);
+      box-shadow: 0 8px 30px rgba(21, 71, 122, 0.1);
     }
 
-    .expanded .plank-details {
+    .platform-detail.visible {
       display: block;
     }
 
-    .plank-details ul {
-      list-style: none;
-      padding: 0.75rem 0 0;
-      border-top: 1px solid var(--light-gray);
+    .platform-detail h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
     }
 
-    .plank-details li {
+    .platform-detail ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .platform-detail li {
       position: relative;
       padding: 0.5rem 0 0.5rem 1.25rem;
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       color: var(--text-dark);
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
-    .plank-details li::before {
+    .platform-detail li::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 0.85rem;
-      width: 7px;
-      height: 7px;
+      top: 0.9rem;
+      width: 8px;
+      height: 8px;
       background: var(--gold);
       border-radius: 50%;
     }
@@ -959,111 +954,62 @@
       <p class="section-subheading">Guided by principles from the Strong Towns movement &mdash; a nonpartisan framework for building fiscally resilient, people-centered communities.</p>
       <div class="platform-grid">
 
-        <div class="plank-card">
+        <div class="plank-card" data-plank="fiscal">
           <span class="plank-icon">&#x1F3DB;</span>
           <h3>Fiscal Responsibility &amp; Infrastructure</h3>
           <p>Voters entrusted us with $375 million in bonds, and every dollar of new infrastructure creates a 50-year maintenance obligation. We owe taxpayers lifecycle cost analysis on major projects and a public dashboard so they can track how their investment is being spent.</p>
-          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
-          <div class="plank-details">
-            <ul>
-              <li>Require lifecycle cost analysis on major projects &mdash; not just what it costs to build, but what it costs to maintain for 50 years.</li>
-              <li>Push for a public bond implementation dashboard so voters can track how their $375 million is being spent.</li>
-              <li>Hold the line against project cost overruns and ensure the city spends taxpayer money responsibly.</li>
-              <li>Support impact fees based on actual impact to the system. A new home on an existing line shouldn't pay the same as one that needs miles of new pipe.</li>
-            </ul>
-          </div>
+          <span class="plank-cta">What I'll do &rarr;</span>
         </div>
 
-        <div class="plank-card">
+        <div class="plank-card" data-plank="zoning">
           <span class="plank-icon">&#x1F3D7;</span>
           <h3>Smart Growth &amp; Zoning Modernization</h3>
           <p>We will never meet the opportunities of 2030 with the policies of 1970. Our 2019 comprehensive plan laid the groundwork &mdash; now it's time to modernize our development code to match the city we're becoming.</p>
-          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
-          <div class="plank-details">
-            <ul>
-              <li>Get the zoning code updated to match the 2019 plan and how Fayetteville actually lives today.</li>
-              <li>Push to update the Wedington Corridor Master Plan and update the zoning so that it's actually legal to build what the community plan says we want.</li>
-              <li>Take the development pressure off established neighborhoods by supporting strategic density at designated growth nodes &mdash; Wedington/Rupple, Wedington/I-49, Mt. Comfort/Rupple.</li>
-              <li>Use the city's data to steer infrastructure investments where growth makes sense, instead of leaving it to developers to dictate.</li>
-            </ul>
-          </div>
+          <span class="plank-cta">What I'll do &rarr;</span>
         </div>
 
-        <div class="plank-card">
+        <div class="plank-card" data-plank="housing">
           <span class="plank-icon">&#x1F3E0;</span>
           <h3>Housing Choice &amp; Affordability</h3>
           <p>70% of Fayetteville households are one or two people, but most of our housing is three-bedroom single-family homes. ADUs, duplexes, and townhomes are evolutionary change that builds individual wealth &mdash; not revolutionary change that transforms neighborhoods overnight.</p>
-          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
-          <div class="plank-details">
-            <ul>
-              <li>Support ADU policies that let homeowners build wealth on their own property, and partner with local banks to backstop financing programs.</li>
-              <li>Advocate for missing-middle housing types &mdash; duplexes, townhomes, cottage courts &mdash; as compatible options in residential areas.</li>
-              <li>Push for the city's Housing Action Plan to include measurable targets and annual progress reporting.</li>
-              <li>Back programs that help Fayetteville residents compete for housing against out-of-town buyers.</li>
-            </ul>
-          </div>
+          <span class="plank-cta">What I'll do &rarr;</span>
         </div>
 
-        <div class="plank-card">
+        <div class="plank-card" data-plank="transportation">
           <span class="plank-icon">&#x1F6B6;</span>
           <h3>Transportation &amp; Connectivity</h3>
           <p>Our trail system is the gold star on Fayetteville's report card &mdash; now let's extend that standard to our streets. Wedington needs safe crossings. Subdivisions need traffic calming. Everyone deserves a network that works, not just drivers.</p>
-          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
-          <div class="plank-details">
-            <ul>
-              <li>Get a real transportation study done for the Wedington corridor &mdash; congestion, safety, and connectivity all need answers.</li>
-              <li>Set street design standards that make our roads safer for everyone, not just cars.</li>
-              <li>Push for traffic calming in residential areas experiencing cut-through traffic.</li>
-              <li>Ensure the $56 million in road bond funds addresses Ward 4's most pressing safety and congestion problems.</li>
-            </ul>
-          </div>
+          <span class="plank-cta">What I'll do &rarr;</span>
         </div>
 
-        <div class="plank-card">
+        <div class="plank-card" data-plank="economic">
           <span class="plank-icon">&#x1F331;</span>
           <h3>Local Economic Development</h3>
           <p>Economic gardening, not big-game hunting. A diversified local economy with dozens of thriving small businesses is more resilient than betting on a single large outside employer.</p>
-          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
-          <div class="plank-details">
-            <ul>
-              <li>Fight for small business support: streamlined permitting, micro-lending partnerships, and fewer barriers to entry for local entrepreneurs.</li>
-              <li>Champion transparency in all economic development agreements, including clear measurable goals and clawback provisions.</li>
-              <li>Encourage mixed-use districts with local businesses that shorten the distance to your destinations &mdash; not just car washes and chain chicken.</li>
-            </ul>
-          </div>
+          <span class="plank-cta">What I'll do &rarr;</span>
         </div>
 
-        <div class="plank-card">
+        <div class="plank-card" data-plank="trust">
           <span class="plank-icon">&#x1F91D;</span>
           <h3>Trust &amp; Civic Engagement</h3>
           <p>Our biggest decisions involve the school district, the university, and neighboring cities &mdash; but these institutions too often operate in silos. We need transparency, early coordination, and genuine public input.</p>
-          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
-          <div class="plank-details">
-            <ul>
-              <li>Build early and ongoing coordination between the city, school board, and university on major planning decisions.</li>
-              <li>Support reasonable limits on NDAs in economic development negotiations.</li>
-              <li>Improve plain-language communication so city processes and public meetings are more accessible to everyday folks.</li>
-              <li>Model respectful civic discourse &mdash; listen to constituents who disagree, engage with their concerns, and explain my reasoning.</li>
-            </ul>
-          </div>
+          <span class="plank-cta">What I'll do &rarr;</span>
         </div>
 
-        <div class="plank-card">
+        <div class="plank-card" data-plank="sustainability">
           <span class="plank-icon">&#x1F33F;</span>
           <h3>Sustainability &amp; Green Space</h3>
           <p>Sustainability and fiscal responsibility are the same argument. Compact development preserves more green space than sprawl and costs less to serve.</p>
-          <button class="plank-toggle" aria-label="Show details">What I'll do <span class="arrow">&#x25BE;</span></button>
-          <div class="plank-details">
-            <ul>
-              <li>Continue pushing toward the 100% clean energy by 2030 goal and the cost savings it generates for taxpayers.</li>
-              <li>Create a green space preservation strategy that identifies priority parcels before they're developed.</li>
-              <li>Expand our conservation district into a real preservation tool that protects ecological services.</li>
-              <li>Support development standards that require responsible stormwater management for new construction.</li>
-            </ul>
-          </div>
+          <span class="plank-cta">What I'll do &rarr;</span>
         </div>
 
       </div>
+
+      <div class="platform-detail" id="platformDetail">
+        <h3 id="detailTitle"></h3>
+        <ul id="detailItems"></ul>
+      </div>
+
     </div>
   </section>
 
@@ -1204,9 +1150,94 @@
       scrollBtn.classList.toggle('visible', window.scrollY > 400);
     });
 
-    // Platform card expand/collapse
+    // Platform card detail panel
+    const plankData = {
+      fiscal: {
+        title: 'Fiscal Responsibility & Infrastructure — What I\'ll Do',
+        items: [
+          'Require lifecycle cost analysis on major projects — not just what it costs to build, but what it costs to maintain for 50 years.',
+          'Push for a public bond implementation dashboard so voters can track how their $375 million is being spent.',
+          'Hold the line against project cost overruns and ensure the city spends taxpayer money responsibly.',
+          'Support impact fees based on actual impact to the system. A new home on an existing line shouldn\'t pay the same as one that needs miles of new pipe.'
+        ]
+      },
+      zoning: {
+        title: 'Smart Growth & Zoning Modernization — What I\'ll Do',
+        items: [
+          'Get the zoning code updated to match the 2019 plan and how Fayetteville actually lives today.',
+          'Push to update the Wedington Corridor Master Plan and update the zoning so that it\'s actually legal to build what the community plan says we want.',
+          'Take the development pressure off established neighborhoods by supporting strategic density at designated growth nodes — Wedington/Rupple, Wedington/I-49, Mt. Comfort/Rupple.',
+          'Use the city\'s data to steer infrastructure investments where growth makes sense, instead of leaving it to developers to dictate.'
+        ]
+      },
+      housing: {
+        title: 'Housing Choice & Affordability — What I\'ll Do',
+        items: [
+          'Support ADU policies that let homeowners build wealth on their own property, and partner with local banks to backstop financing programs.',
+          'Advocate for missing-middle housing types — duplexes, townhomes, cottage courts — as compatible options in residential areas.',
+          'Push for the city\'s Housing Action Plan to include measurable targets and annual progress reporting.',
+          'Back programs that help Fayetteville residents compete for housing against out-of-town buyers.'
+        ]
+      },
+      transportation: {
+        title: 'Transportation & Connectivity — What I\'ll Do',
+        items: [
+          'Set street design standards that make our roads safer for everyone, not just cars.',
+          'Push for traffic calming in residential areas experiencing cut-through traffic.',
+          'Ensure the $56 million in road bond funds addresses Ward 4\'s most pressing safety and congestion problems.'
+        ]
+      },
+      economic: {
+        title: 'Local Economic Development — What I\'ll Do',
+        items: [
+          'Fight for small business support: streamlined permitting, micro-lending partnerships, and fewer barriers to entry for local entrepreneurs.',
+          'Champion transparency in all economic development agreements, including clear measurable goals and clawback provisions.',
+          'Encourage mixed-use districts with local businesses that shorten the distance to your destinations — not just car washes and chain chicken.'
+        ]
+      },
+      trust: {
+        title: 'Trust & Civic Engagement — What I\'ll Do',
+        items: [
+          'Build early and ongoing coordination between the city, school board, and university on major planning decisions.',
+          'Support reasonable limits on NDAs in economic development negotiations.',
+          'Improve plain-language communication so city processes and public meetings are more accessible to everyday folks.',
+          'Model respectful civic discourse — listen to constituents who disagree, engage with their concerns, and explain my reasoning.'
+        ]
+      },
+      sustainability: {
+        title: 'Sustainability & Green Space — What I\'ll Do',
+        items: [
+          'Continue pushing toward the 100% clean energy by 2030 goal and the cost savings it generates for taxpayers.',
+          'Create a green space preservation strategy that identifies priority parcels before they\'re developed.',
+          'Expand our conservation district into a real preservation tool that protects ecological services.',
+          'Support development standards that require responsible stormwater management for new construction.'
+        ]
+      }
+    };
+
+    const detailPanel = document.getElementById('platformDetail');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailItems = document.getElementById('detailItems');
+    let activePlank = null;
+
     document.querySelectorAll('.plank-card').forEach(card => {
-      card.addEventListener('click', () => card.classList.toggle('expanded'));
+      card.addEventListener('click', () => {
+        const key = card.dataset.plank;
+        if (activePlank === key) {
+          detailPanel.classList.remove('visible');
+          card.classList.remove('active');
+          activePlank = null;
+          return;
+        }
+        document.querySelectorAll('.plank-card.active').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        const data = plankData[key];
+        detailTitle.textContent = data.title;
+        detailItems.innerHTML = data.items.map(item => '<li>' + item + '</li>').join('');
+        detailPanel.classList.add('visible');
+        activePlank = key;
+        detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
     });
 
     // Close mobile nav on link click
