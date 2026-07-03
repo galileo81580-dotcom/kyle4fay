@@ -20,7 +20,7 @@
   <link rel="canonical" href="https://kyle4fay.org">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -43,7 +43,7 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--text-dark);
       line-height: 1.6;
     }
@@ -143,27 +143,6 @@
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(33, 151, 212, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -30%;
-      left: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(255, 194, 14, 0.08) 0%, transparent 70%);
-      border-radius: 50%;
-    }
 
     .hero-content {
       max-width: 1100px;
@@ -181,6 +160,7 @@
     }
 
     .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(2.2rem, 5vw, 3.2rem);
       font-weight: 800;
       line-height: 1.15;
@@ -273,10 +253,21 @@
     }
 
     .section-heading {
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 2rem;
       font-weight: 800;
       color: var(--navy);
       margin-bottom: 0.75rem;
+    }
+
+    .section-heading::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 4px;
+      background: var(--gold);
+      margin-top: 0.75rem;
+      border-radius: 2px;
     }
 
     .section-subheading {
@@ -302,7 +293,7 @@
     .about-photo {
       width: 100%;
       border-radius: 12px;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 4;
       object-fit: cover;
       background: var(--light-gray);
       border: 3px solid var(--light-gray);
@@ -329,9 +320,6 @@
       font-weight: 600;
     }
 
-    .experience-badge span {
-      font-size: 1.1rem;
-    }
 
     /* ===== PLATFORM ===== */
     .platform {
@@ -340,7 +328,7 @@
 
     .platform-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
 
@@ -349,6 +337,7 @@
       border-radius: 12px;
       padding: 2rem;
       border: 2px solid transparent;
+      border-top: 3px solid var(--gold);
       transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
       cursor: pointer;
     }
@@ -362,12 +351,22 @@
       transform: none;
       box-shadow: 0 8px 30px rgba(21, 71, 122, 0.12);
       border-color: var(--blue);
+      border-top-color: var(--gold);
     }
 
-    .plank-icon {
-      font-size: 2rem;
+    .plank-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
       margin-bottom: 0.75rem;
-      display: block;
     }
 
     .plank-card h3 {
@@ -392,53 +391,134 @@
     }
 
     .platform-detail {
-      display: none;
-      background: var(--white);
+      grid-column: 2 / 4;
+      background: var(--blue);
       border-radius: 12px;
       padding: 2rem 2.5rem;
-      margin-top: 1.5rem;
-      border: 2px solid var(--blue);
-      box-shadow: 0 8px 30px rgba(21, 71, 122, 0.1);
+      border: none;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .platform-detail.visible {
+    .platform-detail .detail-pullquote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.6;
+      text-align: center;
+      max-width: 400px;
+      opacity: 0.95;
+    }
+
+    .platform-detail .detail-content {
+      display: none;
+      width: 100%;
+    }
+
+    .platform-detail.has-content .detail-pullquote {
+      display: none;
+    }
+
+    .platform-detail.has-content .detail-content {
       display: block;
     }
 
-    .platform-detail h3 {
+    .platform-detail .detail-content h3 {
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 1.1rem;
       font-weight: 700;
-      color: var(--navy);
+      color: var(--white);
       margin-bottom: 1rem;
     }
 
-    .platform-detail ul {
+    .platform-detail .detail-content ul {
       list-style: none;
       padding: 0;
     }
 
-    .platform-detail li {
+    .platform-detail .detail-content li {
       position: relative;
-      padding: 0.5rem 0 0.5rem 1.25rem;
-      font-size: 0.95rem;
-      color: var(--text-dark);
+      padding: 0.4rem 0 0.4rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--white);
       line-height: 1.7;
+      opacity: 0.95;
     }
 
-    .platform-detail li::before {
+    .platform-detail .detail-content li::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 0.9rem;
+      top: 0.85rem;
       width: 8px;
       height: 8px;
       background: var(--gold);
       border-radius: 50%;
     }
 
+    /* Mobile accordion details (hidden on desktop) */
+    .plank-accordion-detail {
+      display: none;
+      padding: 1rem 0 0;
+      border-top: 1px solid rgba(21, 71, 122, 0.1);
+      margin-top: 1rem;
+    }
+
+    .plank-accordion-detail ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .plank-accordion-detail li {
+      position: relative;
+      padding: 0.35rem 0 0.35rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    .plank-accordion-detail li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.75rem;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ===== PHOTO STRIP ===== */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%;
+    }
+
+    .photo-strip img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .photo-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .photo-strip img {
+        height: 180px;
+      }
+    }
+
     /* ===== WHY NOW ===== */
     .why-now {
-      background: var(--white);
+      background: rgba(33, 151, 212, 0.04);
       border-bottom: 1px solid var(--light-gray);
     }
 
@@ -454,18 +534,22 @@
     }
 
     .pullquote {
-      border-left: 4px solid var(--gold);
-      padding-left: 1.5rem;
+      font-family: 'Playfair Display', Georgia, serif;
+      border-left: 6px solid var(--gold);
+      padding: 1rem 1rem 1rem 1.5rem;
       margin: 2rem 0;
-      font-size: 1.15rem;
+      font-size: 1.35rem;
+      font-style: italic;
       font-weight: 600;
       color: var(--navy);
       line-height: 1.6;
+      background: rgba(255, 194, 14, 0.06);
+      border-radius: 8px;
     }
 
     /* ===== IN THE NEWS ===== */
     .news {
-      background: var(--white);
+      background: var(--light-gray);
     }
 
     .news-grid {
@@ -512,6 +596,7 @@
     }
 
     .news-card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--navy);
@@ -667,6 +752,11 @@
 
     .donate .section-heading {
       color: var(--white);
+    }
+
+    .donate .section-heading::after {
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .donate-text {
@@ -835,6 +925,14 @@
       .involved-grid {
         grid-template-columns: 1fr;
       }
+
+      .platform-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .platform-detail {
+        grid-column: 1 / -1;
+      }
     }
 
     @media (max-width: 700px) {
@@ -880,6 +978,14 @@
         grid-template-columns: 1fr;
       }
 
+      .platform-detail {
+        display: none !important;
+      }
+
+      .plank-card.active .plank-accordion-detail {
+        display: block;
+      }
+
       .section-heading {
         font-size: 1.65rem;
       }
@@ -903,7 +1009,7 @@
         <a href="#news">News</a>
         <a href="#involved">Get Involved</a>
         <!-- TODO: Replace with GoodChange campaign URL -->
-        <a href="#donate" class="btn-donate-nav">Donate</a>
+        <a href="https://goodchange.app/donate/kyle4fay?mk=website-13&refcode=nav" class="btn-donate-nav">Contribute</a>
       </nav>
     </div>
   </header>
@@ -917,7 +1023,7 @@
         <div class="hero-buttons">
           <a href="#platform" class="btn btn-gold">See My Plan</a>
           <!-- TODO: Replace with GoodChange campaign URL -->
-          <a href="#donate" class="btn btn-outline">Contribute</a>
+          <a href="https://goodchange.app/donate/kyle4fay?mk=website-13&refcode=home-hero" class="btn btn-outline">Contribute</a>
         </div>
       </div>
       <div class="hero-photo">
@@ -933,9 +1039,9 @@
       <h2 class="section-heading">About Kyle</h2>
       <div class="about-grid">
         <div>
-          <img class="about-photo" src="images/kyle-voting.jpg" alt="Kyle Smith early voting at the Fayetteville Public Library">
+          <img class="about-photo" src="images/kyle-council.jpg" alt="Kyle Smith as Fayetteville City Council Member, Ward 4" style="object-position: center 15%;">
           <div class="experience-badge">
-            <span>&#x1F3DB;</span> Former City Council Member, 2017&ndash;2020
+            Former City Council Member, 2017&ndash;2020
           </div>
         </div>
         <div class="about-text">
@@ -948,6 +1054,14 @@
     </div>
   </section>
 
+  <!-- ===== PHOTO STRIP ===== -->
+  <section class="photo-strip">
+    <img src="images/bo-pride.jpg" alt="Kyle chatting at NWA Pride — photo by Hello Arkansas" loading="lazy" style="object-position: center 30%;">
+    <img src="images/kyle-voting.jpg" alt="Kyle early voting at the Fayetteville Public Library" loading="lazy">
+    <img src="images/kyle-family.jpg" alt="Kyle with family at Granny's 90th birthday" loading="lazy">
+    <img src="images/kyle-kittens.jpg" alt="Kyle with rescue kittens at Perk Cat Cafe" loading="lazy" style="object-position: center 20%;">
+  </section>
+
   <!-- ===== PLATFORM ===== -->
   <section class="section platform" id="platform">
     <div class="section-inner">
@@ -956,62 +1070,82 @@
       <div class="platform-grid">
 
         <div class="plank-card" data-plank="fiscal">
-          <span class="plank-icon">&#x1F3DB;</span>
+          <span class="plank-number">01</span>
           <h3>Fiscal Responsibility &amp; Infrastructure</h3>
           <p>Voters entrusted us with $375 million in bonds, and every dollar of new infrastructure creates a 50-year maintenance obligation. We owe taxpayers lifecycle cost analysis on major projects and a public dashboard so they can track how their investment is being spent.</p>
           <span class="plank-cta">What I'll do &rarr;</span>
+          <div class="plank-accordion-detail"></div>
         </div>
 
         <div class="plank-card" data-plank="zoning">
-          <span class="plank-icon">&#x1F3D7;</span>
-          <h3>Smart Growth &amp; Zoning Modernization</h3>
+          <span class="plank-number">02</span>
+          <h3>Managing Growth with Modernized Zoning Rules</h3>
           <p>We will never meet the opportunities of 2030 with the policies of 1970. Our 2019 comprehensive plan laid the groundwork &mdash; now it's time to modernize our development code to match the city we're becoming.</p>
           <span class="plank-cta">What I'll do &rarr;</span>
-        </div>
-
-        <div class="plank-card" data-plank="housing">
-          <span class="plank-icon">&#x1F3E0;</span>
-          <h3>Housing Choice &amp; Affordability</h3>
-          <p>70% of Fayetteville households are one or two people, but most of our housing is three-bedroom single-family homes. ADUs, duplexes, and townhomes are evolutionary change that builds individual wealth &mdash; not revolutionary change that transforms neighborhoods overnight.</p>
-          <span class="plank-cta">What I'll do &rarr;</span>
-        </div>
-
-        <div class="plank-card" data-plank="transportation">
-          <span class="plank-icon">&#x1F6B6;</span>
-          <h3>Transportation &amp; Connectivity</h3>
-          <p>Our trail system is the gold star on Fayetteville's report card &mdash; now let's extend that standard to our streets. Wedington needs safe crossings. Subdivisions need traffic calming. Everyone deserves a network that works, not just drivers.</p>
-          <span class="plank-cta">What I'll do &rarr;</span>
-        </div>
-
-        <div class="plank-card" data-plank="economic">
-          <span class="plank-icon">&#x1F331;</span>
-          <h3>Local Economic Development</h3>
-          <p>Economic gardening, not big-game hunting. A diversified local economy with dozens of thriving small businesses is more resilient than betting on a single large outside employer.</p>
-          <span class="plank-cta">What I'll do &rarr;</span>
+          <div class="plank-accordion-detail"></div>
         </div>
 
         <div class="plank-card" data-plank="trust">
-          <span class="plank-icon">&#x1F91D;</span>
+          <span class="plank-number">03</span>
           <h3>Trust &amp; Civic Engagement</h3>
           <p>Our biggest decisions involve the school district, the university, and neighboring cities &mdash; but these institutions too often operate in silos. We need transparency, early coordination, and genuine public input.</p>
           <span class="plank-cta">What I'll do &rarr;</span>
+          <div class="plank-accordion-detail"></div>
+        </div>
+
+        <div class="plank-card" data-plank="economic">
+          <span class="plank-number">04</span>
+          <h3>Local Economic Development</h3>
+          <p>Economic gardening, not big-game hunting. A diversified local economy with dozens of thriving small businesses is more resilient than betting on a single large outside employer.</p>
+          <span class="plank-cta">What I'll do &rarr;</span>
+          <div class="plank-accordion-detail"></div>
+        </div>
+
+        <div class="platform-detail" id="platformDetail">
+          <div class="detail-pullquote">
+            &ldquo;A city isn't a picture you paint and leave on the wall. It's a conversation we have together.&rdquo;
+          </div>
+          <div class="detail-content">
+            <h3 id="detailTitle"></h3>
+            <ul id="detailItems"></ul>
+          </div>
+        </div>
+
+        <div class="plank-card" data-plank="transportation">
+          <span class="plank-number">05</span>
+          <h3>Transportation &amp; Connectivity</h3>
+          <p>Our trail system is the gold star on Fayetteville's report card &mdash; now let's extend that standard to our streets. Wedington needs safe crossings. Subdivisions need traffic calming. Everyone deserves a network that works, not just drivers.</p>
+          <span class="plank-cta">What I'll do &rarr;</span>
+          <div class="plank-accordion-detail"></div>
+        </div>
+
+        <div class="plank-card" data-plank="housing">
+          <span class="plank-number">06</span>
+          <h3>Housing Choice &amp; Affordability</h3>
+          <p>70% of Fayetteville households are one or two people, but most of our housing is three-bedroom single-family homes. ADUs, duplexes, and townhomes are evolutionary change that builds individual wealth &mdash; not revolutionary change that transforms neighborhoods overnight.</p>
+          <span class="plank-cta">What I'll do &rarr;</span>
+          <div class="plank-accordion-detail"></div>
         </div>
 
         <div class="plank-card" data-plank="sustainability">
-          <span class="plank-icon">&#x1F33F;</span>
+          <span class="plank-number">07</span>
           <h3>Sustainability &amp; Green Space</h3>
           <p>Sustainability and fiscal responsibility are the same argument. Compact development preserves more green space than sprawl and costs less to serve.</p>
           <span class="plank-cta">What I'll do &rarr;</span>
+          <div class="plank-accordion-detail"></div>
         </div>
 
       </div>
 
-      <div class="platform-detail" id="platformDetail">
-        <h3 id="detailTitle"></h3>
-        <ul id="detailItems"></ul>
-      </div>
-
     </div>
+  </section>
+
+  <!-- ===== PHOTO STRIP 2 ===== -->
+  <section class="photo-strip">
+    <img src="images/solar-lioneld.jpg" alt="Kyle and Mayor Jordan at the Fayetteville solar farm" loading="lazy">
+    <img src="images/chillipepper.jpg" alt="Kyle after finishing the Chile Pepper 10K" loading="lazy">
+    <img src="images/theater2-pennington-gray.jpg" alt="Kyle touring the downtown theater construction site" loading="lazy">
+    <img src="images/campaigndog.jpg" alt="Kyle canvassing with a dog and campaign yard sign" loading="lazy" style="object-position: center 25%;">
   </section>
 
   <!-- ===== WHY NOW ===== -->
@@ -1116,7 +1250,7 @@
       <h2 class="section-heading">Support the Campaign</h2>
       <p class="donate-text">Municipal races are won at the doors. Your contribution goes directly to voter contact &mdash; door-to-door canvassing, mailers, and digital outreach to reach every voter in Ward 4.</p>
       <!-- TODO: Replace with GoodChange campaign URL when bank account is set up -->
-      <a href="#donate" class="btn btn-gold btn-donate-large">Donate Now</a>
+      <a href="https://goodchange.app/donate/kyle4fay?mk=website-13&refcode=home-donate" class="btn btn-gold btn-donate-large">Contribute to Kyle's Campaign</a>
       <p class="donate-disclaimer">Paid for by Vote for Kyle Smith</p>
     </div>
   </section>
@@ -1163,7 +1297,7 @@
         ]
       },
       zoning: {
-        title: 'Smart Growth & Zoning Modernization — What I\'ll Do',
+        title: 'Managing Growth with Modernized Zoning Rules — What I\'ll Do',
         items: [
           'Get the zoning code updated to match the 2019 plan and how Fayetteville actually lives today.',
           'Push to update the Wedington Corridor Master Plan and update the zoning so that it\'s actually legal to build what the community plan says we want.',
@@ -1171,21 +1305,13 @@
           'Use the city\'s data to steer infrastructure investments where growth makes sense, instead of leaving it to developers to dictate.'
         ]
       },
-      housing: {
-        title: 'Housing Choice & Affordability — What I\'ll Do',
+      trust: {
+        title: 'Trust & Civic Engagement — What I\'ll Do',
         items: [
-          'Support ADU policies that let homeowners build wealth on their own property, and partner with local banks to backstop financing programs.',
-          'Advocate for missing-middle housing types — duplexes, townhomes, cottage courts — as compatible options in residential areas.',
-          'Push for the city\'s Housing Action Plan to include measurable targets and annual progress reporting.',
-          'Back programs that help Fayetteville residents compete for housing against out-of-town buyers.'
-        ]
-      },
-      transportation: {
-        title: 'Transportation & Connectivity — What I\'ll Do',
-        items: [
-          'Set street design standards that make our roads safer for everyone, not just cars.',
-          'Push for traffic calming in residential areas experiencing cut-through traffic.',
-          'Ensure the $56 million in road bond funds addresses Ward 4\'s most pressing safety and congestion problems.'
+          'Build early and ongoing coordination between the city, school board, and university on major planning decisions.',
+          'Support reasonable limits on NDAs in economic development negotiations.',
+          'Improve plain-language communication so city processes and public meetings are more accessible to everyday folks.',
+          'Model respectful civic discourse — listen to constituents who disagree, engage with their concerns, and explain my reasoning.'
         ]
       },
       economic: {
@@ -1196,13 +1322,21 @@
           'Encourage mixed-use districts with local businesses that shorten the distance to your destinations — not just car washes and chain chicken.'
         ]
       },
-      trust: {
-        title: 'Trust & Civic Engagement — What I\'ll Do',
+      transportation: {
+        title: 'Transportation & Connectivity — What I\'ll Do',
         items: [
-          'Build early and ongoing coordination between the city, school board, and university on major planning decisions.',
-          'Support reasonable limits on NDAs in economic development negotiations.',
-          'Improve plain-language communication so city processes and public meetings are more accessible to everyday folks.',
-          'Model respectful civic discourse — listen to constituents who disagree, engage with their concerns, and explain my reasoning.'
+          'Set street design standards that make our roads safer for everyone, not just cars.',
+          'Push for traffic calming in residential areas experiencing cut-through traffic.',
+          'Ensure the $56 million in road bond funds addresses Ward 4\'s most pressing safety and congestion problems.'
+        ]
+      },
+      housing: {
+        title: 'Housing Choice & Affordability — What I\'ll Do',
+        items: [
+          'Support ADU policies that let homeowners build wealth on their own property, and partner with local banks to backstop financing programs.',
+          'Advocate for missing-middle housing types — duplexes, townhomes, cottage courts — as compatible options in residential areas.',
+          'Push for the city\'s Housing Action Plan to include measurable targets and annual progress reporting.',
+          'Back programs that help Fayetteville residents compete for housing against out-of-town buyers.'
         ]
       },
       sustainability: {
@@ -1219,25 +1353,64 @@
     const detailPanel = document.getElementById('platformDetail');
     const detailTitle = document.getElementById('detailTitle');
     const detailItems = document.getElementById('detailItems');
+    const platformGrid = document.querySelector('.platform-grid');
     let activePlank = null;
+
+    const getMode = () => {
+      const w = window.innerWidth;
+      if (w <= 700) return 'mobile';
+      if (w <= 900) return 'tablet';
+      return 'desktop';
+    };
+
+    function repositionPanel(clickedCard) {
+      const mode = getMode();
+      if (mode === 'desktop') return;
+      const cards = [...platformGrid.querySelectorAll('.plank-card')];
+      const idx = cards.indexOf(clickedCard);
+      const cols = mode === 'tablet' ? 2 : 1;
+      const rowEnd = Math.floor(idx / cols) * cols + (cols - 1);
+      const lastInRow = cards[Math.min(rowEnd, cards.length - 1)];
+      lastInRow.after(detailPanel);
+    }
 
     document.querySelectorAll('.plank-card').forEach(card => {
       card.addEventListener('click', () => {
         const key = card.dataset.plank;
-        if (activePlank === key) {
-          detailPanel.classList.remove('visible');
-          card.classList.remove('active');
-          activePlank = null;
-          return;
-        }
-        document.querySelectorAll('.plank-card.active').forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
         const data = plankData[key];
-        detailTitle.textContent = data.title;
-        detailItems.innerHTML = data.items.map(item => '<li>' + item + '</li>').join('');
-        detailPanel.classList.add('visible');
-        activePlank = key;
-        detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        const itemsHtml = data.items.map(item => '<li>' + item + '</li>').join('');
+
+        if (getMode() === 'mobile') {
+          const accordion = card.querySelector('.plank-accordion-detail');
+          if (card.classList.contains('active')) {
+            card.classList.remove('active');
+            accordion.innerHTML = '';
+            activePlank = null;
+            return;
+          }
+          document.querySelectorAll('.plank-card.active').forEach(c => {
+            c.classList.remove('active');
+            c.querySelector('.plank-accordion-detail').innerHTML = '';
+          });
+          card.classList.add('active');
+          accordion.innerHTML = '<ul>' + itemsHtml + '</ul>';
+          activePlank = key;
+        } else {
+          if (activePlank === key) {
+            detailPanel.classList.remove('has-content');
+            card.classList.remove('active');
+            activePlank = null;
+            return;
+          }
+          document.querySelectorAll('.plank-card.active').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          detailTitle.textContent = data.title;
+          detailItems.innerHTML = itemsHtml;
+          detailPanel.classList.add('has-content');
+          repositionPanel(card);
+          activePlank = key;
+          detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       });
     });
 
